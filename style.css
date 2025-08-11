@@ -247,8 +247,15 @@ footer {
   border-bottom: 2px solid #64ffda;
 }
 
-/* Adjust chart canvas height on dashboard */
-#anomalyChart {
+/* Container for chart to control size */
+.chart-container {
   width: 100%;
   height: 400px;
+  position: relative;
+}
+
+/* Ensure the canvas fills its container */
+#anomalyChart {
+  width: 100% !important;
+  height: 100% !important;
 }
