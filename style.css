@@ -9,7 +9,8 @@ body {
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
   background-color: #f7f9fc;
-  color: #112240;
+  /* Updated text color to black for better readability */
+  color: #000000;
 }
 
 /* Hero section */
@@ -250,7 +251,9 @@ footer {
 /* Container for chart to control size */
 .chart-container {
   width: 100%;
+  max-width: 800px;
   height: 400px;
+  margin: 0 auto;
   position: relative;
 }
 
