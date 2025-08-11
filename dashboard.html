@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predictive Maintenance Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- External libraries for CSV parsing and charting -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header class="subpage-header">
+      <nav class="navbar">
+        <div class="logo">My Portfolio</div>
+        <ul class="nav-links">
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#data-cleaning">Data Cleaning</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="dashboard.html" class="active">Live Demo</a></li>
+        </ul>
+      </nav>
+      <div class="hero-content subpage-title">
+        <h1>Predictive Maintenance Dashboard</h1>
+        <p>Interactively explore anomaly rates across simulated turbofan engines.</p>
+      </div>
+    </header>
+
+    <section class="section" id="demo">
+      <h2>Engine Anomaly Explorer</h2>
+      <p>
+        This dashboard loads the flagged dataset from the predictive maintenance
+        project and computes the percentage of cycles with anomalies for each
+        engine unit. The bar chart below updates once the data is processed.
+      </p>
+      <canvas id="anomalyChart" width="800" height="400"></canvas>
+      <div id="loadingMessage" style="margin-top: 20px; text-align:center;">Loading data…</div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Fetch the flagged dataset and create chart
+      async function loadAndVisualize() {
+        const loading = document.getElementById('loadingMessage');
+        try {
+          const response = await fetch(
+            'https://raw.githubusercontent.com/MrArod/Predictive_maintenance-/main/flagged_FD001_data.csv'
+          );
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const csvText = await response.text();
+          // Parse CSV using PapaParse
+          const parsed = Papa.parse(csvText, { header: true });
+          const rows = parsed.data;
+          // Identify anomaly columns
+          const anomalyCols = parsed.meta.fields.filter((f) =>
+            f.startsWith('Anomaly_')
+          );
+          // Group counts
+          const counts = {};
+          const cycles = {};
+          rows.forEach((row) => {
+            const unit = row['unit_number'];
+            if (!unit) return;
+            // Count cycle
+            cycles[unit] = (cycles[unit] || 0) + 1;
+            // Determine if this cycle has any anomaly
+            let isAnomaly = false;
+            for (const col of anomalyCols) {
+              const val = row[col];
+              // Flag anomalies represented as 'True', 'TRUE', '1' or 'True ' etc.
+              if (
+                val === 'True' ||
+                val === 'true' ||
+                val === 'TRUE' ||
+                val === '1' ||
+                val === 'true ' ||
+                val === true ||
+                val === 1
+              ) {
+                isAnomaly = true;
+                break;
+              }
+            }
+            if (isAnomaly) {
+              counts[unit] = (counts[unit] || 0) + 1;
+            }
+          });
+          // Compute percentage
+          const labels = Object.keys(cycles).sort((a, b) => {
+            const pctA = (counts[a] || 0) / cycles[a];
+            const pctB = (counts[b] || 0) / cycles[b];
+            return pctB - pctA;
+          });
+          const percentages = labels.map((unit) => {
+            const count = counts[unit] || 0;
+            const total = cycles[unit];
+            return ((count / total) * 100).toFixed(2);
+          });
+          // Create Chart.js bar chart
+          const ctx = document.getElementById('anomalyChart').getContext('2d');
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: '% of cycles with anomalies',
+                  data: percentages,
+                  backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                  borderColor: 'rgba(255, 99, 132, 1)',
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                x: {
+                  title: {
+                    display: true,
+                    text: 'Engine Unit Number',
+                  },
+                },
+                y: {
+                  title: {
+                    display: true,
+                    text: 'Anomaly Percentage (%)',
+                  },
+                  beginAtZero: true,
+                },
+              },
+              plugins: {
+                tooltip: {
+                  callbacks: {
+                    label: function (ctx) {
+                      return `${ctx.parsed.y}%`;
+                    },
+                  },
+                },
+              },
+            },
+          });
+          loading.textContent = '';
+        } catch (err) {
+          loading.textContent =
+            'Failed to load data. Please ensure network access to GitHub raw files.';
+          console.error(err);
+        }
+      }
+      document.addEventListener('DOMContentLoaded', loadAndVisualize);
+    </script>
+  </body>
+</html>
