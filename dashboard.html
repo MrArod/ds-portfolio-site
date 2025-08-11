@@ -27,14 +27,16 @@
       </div>
     </header>
 
-    <section class="section" id="demo">
+    <section class="section" id="demo" style="background-image: url('ds_background.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
       <h2>Engine Anomaly Explorer</h2>
       <p>
         This dashboard loads the flagged dataset from the predictive maintenance
         project and computes the percentage of cycles with anomalies for each
         engine unit. The bar chart below updates once the data is processed.
       </p>
-      <canvas id="anomalyChart" width="800" height="400"></canvas>
+      <div class="chart-container">
+        <canvas id="anomalyChart"></canvas>
+      </div>
       <div id="loadingMessage" style="margin-top: 20px; text-align:center;">Loading data…</div>
     </section>
 
