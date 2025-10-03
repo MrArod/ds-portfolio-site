@@ -1,163 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data Science Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- Hero section with full‑screen background image -->
-    <header id="hero">
-      <nav class="navbar">
-        <div class="logo">My Portfolio</div>
-        <ul class="nav-links">
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#data-cleaning">Data Cleaning</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <!-- Link to interactive dashboard -->
-          <li><a href="dashboard.html">Live Dashboard</a></li>
-        </ul>
-      </nav>
-      <div class="hero-content">
-        <h1>Machine Learning &amp; Data Science Portfolio</h1>
-        <p>
-          Showcasing hands‑on projects that combine statistical rigor with domain
-          expertise in finance and engineering.
-        </p>
-        <a class="cta-button" href="#projects">Explore my work</a>
-      </div>
-    </header>
-
-    <!-- Projects section -->
-    <section id="projects" class="section">
-      <h2>Featured Projects</h2>
-      <div class="projects-grid">
-        <!-- NASA Anomaly Detection project -->
-        <div class="project-card">
-          <img
-            src="assets/anomaly.png"
-            alt="Abstract sensor anomaly illustration"
-            class="project-image"
-          />
-          <div class="project-info">
-            <h3>NASA Turbofan Engine Anomaly Detection</h3>
-            <p>
-              An end‑to‑end predictive maintenance project built on NASA’s
-              Commercial Modular Aero‑Propulsion System Simulation (C‑MAPSS)
-              dataset. The dataset simulates realistic turbofan engine flights,
-              recording 30 engine parameters at a 1 Hz sampling rate across
-              multiple flight conditions【763856462666916†L58-L78】. Faults are
-              introduced in various components—fan, compressors and turbines—to
-              evaluate remaining useful life and early anomaly detection【763856462666916†L64-L82】.
-            </p>
-            <ul>
-              <li>
-                <strong>Data acquisition:</strong> High‑fidelity simulations
-                capture full flight recordings with seven distinct flight
-                conditions for ascent and descent【763856462666916†L60-L78】.
-              </li>
-              <li>
-                <strong>Cleaning &amp; preprocessing:</strong> Removed
-                irrelevant observations, fixed structural issues, managed
-                outliers and imputed missing values to ensure clean sensor
-                signals【505161951259763†L95-L124】.
-              </li>
-              <li>
-                <strong>Modeling:</strong> Trained unsupervised models
-                (Isolation Forest and autoencoders) on healthy data to detect
-                deviations indicating degradation.
-              </li>
-              <li>
-                <strong>Result:</strong> Delivered a dashboard for real‑time
-                anomaly scoring and projected remaining useful life, enabling
-                proactive maintenance decisions.
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Data cleaning & ingestion project -->
-        <div class="project-card">
-          <img
-            src="assets/dataclean.png"
-            alt="Abstract data cleaning illustration"
-            class="project-image"
-          />
-          <div class="project-info">
-            <h3>Data Ingestion &amp; Cleaning Pipeline</h3>
-            <p>
-              Demonstrates a robust pipeline for ingesting heterogeneous data
-              sources and preparing them for analysis. Data ingestion is the
-              first step of any analytics workflow: it involves collecting and
-              importing data from diverse sources into a centralized system for
-              storage and analysis【539835010212791†L397-L417】. Clean data
-              drastically improves model performance—hence the adage
-              “better data beats fancier algorithms.”
-            </p>
-            <ul>
-              <li>
-                <strong>Ingestion process:</strong> Collected raw CSVs, API
-                feeds and database extracts, then transferred and loaded them
-                into a data lake. Both batch and real‑time ingestion modes were
-                supported【539835010212791†L421-L436】.
-              </li>
-              <li>
-                <strong>Cleaning steps:</strong> Removed unwanted records,
-                standardized formats, managed outliers and imputed missing
-                values【505161951259763†L95-L124】. Documented every transformation
-                for transparency and reproducibility.
-              </li>
-              <li>
-                <strong>Automation:</strong> Utilized Python and SQL to
-                automate ingestion and cleaning, with scheduled ETL jobs
-                monitoring pipeline health.
-              </li>
-              <li>
-                <strong>Outcome:</strong> Delivered curated datasets ready for
-                exploratory data analysis, modeling and visualization.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About section -->
-    <section id="about" class="section light-section">
-      <h2>About Me</h2>
-      <p>
-        I am a data scientist with a background in the finance industry. My
-        passion lies in leveraging machine learning and statistical techniques to
-        extract actionable insights. In my previous roles
-        I have developed predictive models for risk assessment, automated
-        reporting pipelines and implemented anomaly detection systems to
-        safeguard mission‑critical operations. Beyond my professional work, I
-        enjoy creating content around exploring open‑source projects and translating technical
-        breakthroughs to my audience on social media platforms.
-      </p>
-    </section>
-
-    <!-- Contact section -->
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p>
-        Interested in collaborating? Feel free to
-        reach out via email or connect with me on LinkedIn.
-      </p>
-      <ul class="contact-list">
-        <li>Email: <a href="mailto:reachout.rodriguez@gmail.com">reachout.rodriguez@gmail.com</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/a-n-t-h-o-n-y-r/">linkedin.com/in/a-n-t-h-o-n-y-r/</a></li>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Science & Machine Learning Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">My Portfolio</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
       </ul>
-    </section>
-
-    <footer>
-      <p>&copy; 2025 Your Name. All rights reserved.</p>
-    </footer>
-  </body>
+    </nav>
+  </header>
+  <section class="hero">
+    <h1>Data Science & Machine Learning Portfolio</h1>
+    <p>Showcasing projects at the intersection of statistics, engineering and creativity.</p>
+  </section>
+  <section id="about" class="section">
+    <div class="row">
+      <div class="text">
+        <h2>About Me</h2>
+        <p>I am a data scientist with a background in finance and engineering. My projects combine rigorous analysis, domain expertise and clear storytelling to deliver insights that make a difference.</p>
+        <p>I have built predictive models, automated data pipelines and interactive dashboards to solve real-world problems.</p>
+      </div>
+      <img src="https://images.pexels.com/photos/669610/pexels-photo-669610.jpeg?auto=compress&cs=tinysrgb&w=1260" alt="About">
+    </div>
+  </section>
+  <section id="projects" class="section">
+    <div class="row">
+      <img src="https://images.pexels.com/photos/3321792/pexels-photo-3321792.jpeg?auto=compress&cs=tinysrgb&w=1260" alt="NASA project">
+      <div class="text">
+        <h2>NASA Anomaly Detection</h2>
+        <p>An end-to-end predictive maintenance project built on NASA’s turbofan engine dataset. Using unsupervised models such as Isolation Forest and Autoencoders, we detect anomalies and forecast remaining useful life.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="text">
+        <h2>Data Ingestion & Cleaning Pipeline</h2>
+        <p>A robust pipeline for ingesting heterogeneous data sources and preparing them for analysis. It demonstrates the importance of clean data and automation in building reliable analytics workflows.</p>
+      </div>
+      <img src="https://images.pexels.com/photos/6065409/pexels-photo-6065409.jpeg?auto=compress&cs=tinysrgb&w=1260" alt="Cleaning project">
+    </div>
+  </section>
+  <section id="contact" class="contact">
+    <h2>Get in Touch</h2>
+    <p>Interested in collaborating or learning more? Feel free to send a message using the form below.</p>
+    <form action="https://formsubmit.co/reachout.rodriguez@gmail.com" method="POST">
+      <div class="row">
+        <input type="text" name="firstName" placeholder="First Name" required>
+        <input type="text" name="lastName" placeholder="Last Name" required>
+      </div>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="subject" placeholder="Subject">
+      <textarea name="message" rows="5" placeholder="Message" required></textarea>
+      <input type="hidden" name="_captcha" value="false">
+      <input type="submit" value="Send Message">
+    </form>
+  </section>
+  <footer>
+    <div class="footer-nav">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+    <p>&copy; 2025 My Portfolio. All rights reserved.</p>
+  </footer>
+</body>
 </html>
